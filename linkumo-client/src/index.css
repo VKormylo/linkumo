@@ -1,1 +1,29 @@
 @import 'tailwindcss';
+
+@theme {
+  /* ------------ COLORS ------------ */
+  --color-primary-50: #f8f9fa;
+  --color-primary-100: #f1f2f4;
+  --color-primary-200: #dfe2e5;
+  --color-primary-300: #d0d4d8;
+  --color-primary-400: #afb5bb;
+  --color-primary-500: #6c757d;
+  --color-primary-600: #495057;
+  --color-primary-700: #343a40;
+  --color-primary-800: #23292f;
+
+  --color-red-500: #e65041;
+
+  /* ------------ FONTS ------------ */
+  --text-xxs: 0.625rem;
+
+  --font-rubik: 'Rubik', sans-serif;
+  --font-mulish: 'Mulish', sans-serif;
+}
+
+@layer base {
+  html {
+    @apply font-rubik;
+    @apply text-xxs;
+  }
+}

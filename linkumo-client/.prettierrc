@@ -4,5 +4,7 @@
   "singleQuote": true,
   "arrowParens": "always",
   "printWidth": 80,
-  "endOfLine": "auto"
+  "endOfLine": "auto",
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./src/index.css"
 }
