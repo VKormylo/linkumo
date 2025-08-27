@@ -24,6 +24,5 @@
 @layer base {
   html {
     @apply font-rubik;
-    @apply text-xxs;
   }
 }
