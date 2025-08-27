@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Link {
+  id           String      @id @default(uuid())
+  url          String      @unique
+  title        String
+  tags         String[]
+  isFavorite   Boolean     @default(false)
+  user         User        @relation(fields: [userId], references: [id])
+  userId       String
+  collection   Collection? @relation(fields: [collectionId], references: [id])
+  collectionId String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Collection {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  tags        String[]
+  isFavorite  Boolean  @default(false)
+  links       Link[]
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+}
+
+model User {
+  id               String       @id @default(uuid())
+  name             String
+  email            String       @unique
+  isEmailConfirmed Boolean      @default(false)
+  appLanguage      AppLanguage  @default(EN)
+  password         String
+  birthDate        DateTime?
+  role             UserRole     @default(USER)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  links            Link[]
+  collections      Collection[]
+}
+
+enum AppLanguage {
+  EN
+  UA
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
