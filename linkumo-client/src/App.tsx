@@ -1,5 +1,5 @@
 function App() {
-  return <div>Linkumo</div>;
+  return <div>Linkumo</div>
 }
 
-export default App;
+export default App
