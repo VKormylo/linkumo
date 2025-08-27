@@ -1,5 +1,11 @@
+import LogoIcon from '~/assets/logo.svg?react'
+
 function App() {
-  return <div>Linkumo</div>
+  return (
+    <div>
+      <LogoIcon />
+    </div>
+  )
 }
 
 export default App
