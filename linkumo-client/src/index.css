@@ -30,3 +30,40 @@
     outline: none;
   }
 }
+
+/* ------------ TYPOGRAPHY ------------ */
+@utility mulish-60-black {
+  @apply font-mulish text-6xl font-black;
+}
+
+@utility rubik-24-semibold {
+  @apply font-rubik text-2xl font-semibold;
+}
+
+@utility rubik-18-regular {
+  @apply font-rubik text-lg font-normal;
+}
+
+@utility rubik-18-semibold {
+  @apply font-rubik text-lg font-semibold;
+}
+
+@utility rubik-16-regular {
+  @apply font-rubik text-base font-normal;
+}
+
+@utility rubik-16-medium {
+  @apply font-rubik text-base font-medium;
+}
+
+@utility rubik-14-regular {
+  @apply font-rubik text-sm font-normal;
+}
+
+@utility rubik-12-regular {
+  @apply font-rubik text-xs font-normal;
+}
+
+@utility mulish-10-semibold {
+  @apply font-mulish text-xxs font-semibold;
+}

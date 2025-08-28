@@ -4,11 +4,13 @@ import AppRoutes from './routes'
 function App() {
   return (
     <>
-      <header className='flex items-center'>
-        <a href='/'>
+      <header className="flex items-center">
+        <a href="/">
           <LogoIcon />
         </a>
-        <a className='ml-10' href='/componentsPreview'>Components Preview</a>
+        <a className="ml-10" href="/componentsPreview">
+          Components Preview
+        </a>
       </header>
       <main>
         <AppRoutes />
