@@ -25,4 +25,8 @@
   html {
     @apply font-rubik;
   }
+
+  input {
+    outline: none;
+  }
 }

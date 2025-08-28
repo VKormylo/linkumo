@@ -1,0 +1,1 @@
+export type TailwindStyles = React.ComponentProps<'div'>['className']
