@@ -15,8 +15,8 @@ const ComponentsPreview = () => {
           value={inputValue}
           placeholder="Enter your email address"
           required
-          width={390}
           onChange={setInputValue}
+          className="w-[390px]"
         />
       </div>
     </div>

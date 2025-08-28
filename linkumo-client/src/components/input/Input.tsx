@@ -1,34 +1,29 @@
 import type React from 'react'
 import type { TailwindStyles } from '~/types/common.types'
 
-type StyledInputProps = {
+type InputProps = {
   type?: 'password' | 'text'
   label?: string
   value: string
   placeholder: string
-  width?: number
   onChange: (value: string) => void
   maxLength?: number
   required?: boolean
   className?: TailwindStyles
 }
 
-const Input: React.FC<StyledInputProps> = ({
+const Input: React.FC<InputProps> = ({
   type = 'text',
   label,
   value,
   placeholder,
-  width,
   onChange,
   maxLength,
   required = false,
   className
 }) => {
   return (
-    <div
-      className="flex flex-col gap-2.5"
-      {...(width ? { style: { width } } : {})}
-    >
+    <div className="flex flex-col gap-2.5">
       {label && (
         <label className="text-base font-medium text-primary-800">
           {label}
