@@ -23,7 +23,7 @@
 
 @layer base {
   html {
-    @apply font-rubik;
+    @apply font-rubik text-primary-800;
   }
 
   input {
