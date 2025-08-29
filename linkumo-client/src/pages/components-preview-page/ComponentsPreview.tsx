@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '~/components/button/Button'
 import Input from '~/components/input/Input'
 
 const ComponentsPreview = () => {
@@ -9,7 +10,7 @@ const ComponentsPreview = () => {
       <h1 className="mt-10 text-2xl text-primary-800">
         Welcome to components page
       </h1>
-      <div className="m-10 flex-col gap-10">
+      <div className="m-10 flex-col">
         <Input
           label="Email"
           value={inputValue}
@@ -18,6 +19,15 @@ const ComponentsPreview = () => {
           onChange={setInputValue}
           className="w-[390px]"
         />
+        <Button variant="primary" className="mt-10 w-xs">
+          Sign Up
+        </Button>
+        <Button variant="primary-outlined" className="mt-10 w-xs">
+          Sign Up
+        </Button>
+        <Button variant="secondary-outlined" className="mt-10 w-xs">
+          Sign Up
+        </Button>
       </div>
     </div>
   )
