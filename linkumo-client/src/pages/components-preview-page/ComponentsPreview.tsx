@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Button from '~/components/button/Button'
 import Input from '~/components/input/Input'
+import AddIcon from '~/assets/icons/add.svg?react'
 
 const ComponentsPreview = () => {
   const [inputValue, setInputValue] = useState('')
@@ -19,15 +20,24 @@ const ComponentsPreview = () => {
           onChange={setInputValue}
           className="w-[390px]"
         />
-        <Button variant="primary" className="mt-10 w-xs">
-          Sign Up
-        </Button>
-        <Button variant="primary-outlined" className="mt-10 w-xs">
-          Sign Up
-        </Button>
-        <Button variant="secondary-outlined" className="mt-10 w-xs">
-          Sign Up
-        </Button>
+        <div className="flex-row gap-[10px]">
+          <Button variant="primary" className="mt-10 w-xs">
+            Sign Up
+          </Button>
+          <Button variant="primary-outlined" className="mt-10 w-xs">
+            Sign Up
+          </Button>
+          <Button variant="secondary-outlined" className="mt-10 w-xs">
+            Sign Up
+          </Button>
+          <Button
+            variant="primary"
+            className="mt-10 w-xs"
+            startIcon={<AddIcon />}
+          >
+            Add
+          </Button>
+        </div>
       </div>
     </div>
   )
