@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import Input from '~/components/input/Input'
+import SearchIcon from '~/assets//icons/search.svg?react'
 
 const ComponentsPreview = () => {
   const [inputValue, setInputValue] = useState('')
+  const [searchValue, setSearchValue] = useState('')
 
   return (
     <div>
@@ -17,6 +19,13 @@ const ComponentsPreview = () => {
           required
           onChange={setInputValue}
           className="w-[390px]"
+        />
+        <Input
+          value={searchValue}
+          placeholder="Search"
+          onChange={setSearchValue}
+          className="w-[390px]"
+          iconStart={<SearchIcon />}
         />
       </div>
     </div>
