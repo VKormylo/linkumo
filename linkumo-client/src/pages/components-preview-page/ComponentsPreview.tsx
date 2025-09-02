@@ -25,7 +25,7 @@ const ComponentsPreview = () => {
           placeholder="Search"
           onChange={setSearchValue}
           className="w-[390px]"
-          iconStart={<SearchIcon />}
+          startIcon={<SearchIcon />}
         />
       </div>
     </div>

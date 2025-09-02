@@ -10,8 +10,8 @@ type InputProps = {
   maxLength?: number
   required?: boolean
   className?: TailwindStyles
-  iconStart?: React.ReactNode
-  iconEnd?: React.ReactNode
+  startIcon?: React.ReactNode
+  endIcon?: React.ReactNode
 }
 
 const Input: React.FC<InputProps> = ({
@@ -23,9 +23,12 @@ const Input: React.FC<InputProps> = ({
   maxLength,
   required = false,
   className,
-  iconStart,
-  iconEnd
+  startIcon,
+  endIcon
 }) => {
+  const iconClass =
+    'ml-[7px] flex h-[18px] w-[18px] items-center text-primary-800'
+
   return (
     <div className="flex flex-col gap-2.5">
       {label && (
@@ -34,13 +37,9 @@ const Input: React.FC<InputProps> = ({
         </label>
       )}
       <div
-        className={`flex h-[50px] items-center rounded-md border-1 border-primary-100 bg-white px-3 text-primary-800 focus-within:bg-primary-50 ${className}`}
+        className={`flex h-[50px] items-center rounded-md border-1 border-primary-100 bg-white px-1.5 text-primary-800 focus-within:bg-primary-50 ${className}`}
       >
-        {iconStart && (
-          <span className="mr-3 flex h-[18px] w-[18px] items-center text-primary-800">
-            {iconStart}
-          </span>
-        )}
+        {startIcon && <span className={iconClass}>{startIcon}</span>}
 
         <input
           type={type}
@@ -49,14 +48,10 @@ const Input: React.FC<InputProps> = ({
           onChange={(e) => onChange(e.target.value)}
           maxLength={maxLength}
           required={required}
-          className="flex-1 bg-transparent text-primary-800 placeholder:text-sm placeholder:text-primary-400 focus:outline-none"
+          className="mx-3 flex-1 bg-transparent text-primary-800 placeholder:text-sm placeholder:text-primary-400 focus:outline-none"
         />
 
-        {iconEnd && (
-          <span className="ml-3 flex h-[18px] w-[18px] items-center text-primary-800">
-            {iconEnd}
-          </span>
-        )}
+        {endIcon && <span className={iconClass}>{endIcon}</span>}
       </div>
     </div>
   )
