@@ -24,11 +24,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-2.5">
-      {label && (
-        <label className="text-base font-medium text-primary-800">
-          {label}
-        </label>
-      )}
+      {label && <label className="rubik-16-medium">{label}</label>}
       <input
         type={type}
         value={value}
@@ -36,7 +32,7 @@ const Input: React.FC<InputProps> = ({
         onChange={(e) => onChange(e.target.value)}
         maxLength={maxLength}
         required={required}
-        className={`h-[50px] rounded-md border-1 border-primary-100 px-4 text-primary-800 placeholder:text-sm placeholder:text-primary-400 focus:bg-primary-50 ${className}`}
+        className={`h-[50px] rounded-md border border-primary-100 px-4 text-primary-800 placeholder:text-sm placeholder:text-primary-400 focus:bg-primary-50 ${className}`}
       />
     </div>
   )
