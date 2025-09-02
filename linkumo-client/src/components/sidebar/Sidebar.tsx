@@ -13,7 +13,7 @@ const Sidebar = () => {
     'text-primary-400 hover:bg-primary-100 hover:text-primary-800'
 
   return (
-    <aside className="flex h-screen w-[346px] flex-col justify-between bg-gray-50 px-[38px] py-12">
+    <aside className="flex h-screen w-[346px] flex-col justify-between bg-primary-50 px-[38px] py-12">
       <div>
         <a href="/">
           <LogoIcon className="hover:cursor-pointer" />
