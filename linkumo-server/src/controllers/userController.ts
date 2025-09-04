@@ -1,0 +1,14 @@
+import { Request, Response } from 'express'
+import { catchAsync } from '~/utils/catchAsync'
+import { prisma } from '~/lib/prisma'
+
+export const getUsers = catchAsync(async (_: Request, res: Response) => {
+  const users = await prisma.user.findMany()
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      users
+    }
+  })
+})
