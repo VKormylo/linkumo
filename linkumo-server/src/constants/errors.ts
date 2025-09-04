@@ -1,0 +1,13 @@
+const errors = {
+  INVALID_TOKEN: 'Invalid token',
+  INVALID_EMAIL_OR_PASSWORD: 'Invalid email or password!',
+  EMPTY_SIGNUP_CREDENTIALS: 'Please provide name, email and password!',
+  EMPTY_LOGIN_CREDENTIALS: 'Please provide email and password!',
+  USER_ALREADY_EXISTS: 'User already exists!',
+  EMAIL_NOT_VERIFIED: 'Please verify your email!',
+  UNAUTHENTICATED: 'Unauthenticated!',
+  NOT_LOGGED_IN: 'You are not logged in! Please log in to get access.',
+  USER_NO_LONGER_EXISTS: 'The user belonging to this token does no longer exist.'
+}
+
+export default errors
