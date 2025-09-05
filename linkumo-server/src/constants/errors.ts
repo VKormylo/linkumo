@@ -7,7 +7,10 @@ const errors = {
   EMAIL_NOT_VERIFIED: 'Please verify your email!',
   UNAUTHENTICATED: 'Unauthenticated!',
   NOT_LOGGED_IN: 'You are not logged in! Please log in to get access.',
-  USER_NO_LONGER_EXISTS: 'The user belonging to this token does no longer exist.'
+  USER_NO_LONGER_EXISTS: 'The user belonging to this token does no longer exist.',
+  INVALID_GOOGLE_TOKEN: 'Invalid Google ID token!',
+  GOOGLE_AUTH_FAILED: 'Google authentication failed!',
+  GOOGLE_ID_TOKEN_REQUIRED: 'Google ID token is required!'
 }
 
 export default errors
