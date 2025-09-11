@@ -3,6 +3,7 @@ import AuthBackground from '~/assets/images/auth-bg.png'
 import AuthSignup from './auth-signup/AuthSignup'
 import { useState, type MouseEvent } from 'react'
 import AuthLogin from './auth-login/AuthLogin'
+import Button from '~/components/button/Button'
 
 enum AuthActionEnum {
   signup = 'signup',
@@ -49,25 +50,25 @@ const Auth: React.FC = () => {
 
   return (
     <div className="flex h-screen w-screen items-center bg-primary-50">
-      <div className="mx-auto flex h-[800px] w-[1100px] items-center bg-white">
-        <form
-          className={`flex h-full w-1/2 flex-col justify-between px-20 py-14 ${formClass} transition-all duration-500 ease-out`}
+      <div className="mx-auto flex h-[800px] w-[1100px] items-center bg-white drop-shadow-[0_0_30px_rgba(0,0,0,0.05)]">
+        <div
+          className={`flex h-full w-1/2 flex-col px-20 py-14 ${formClass} transition-all duration-500 ease-out`}
         >
-          <LogoIcon />
           <div>
-            <p className="mt-8 mb-3 rubik-24-semibold">
-              {formData[actionType].title}
-            </p>
-            <p className="rubik-16-regular text-primary-400">
-              {formData[actionType].description}
-            </p>
-            {actionType === AuthActionEnum.signup ? (
-              <AuthSignup />
-            ) : (
-              <AuthLogin />
-            )}
+            <LogoIcon />
           </div>
-        </form>
+          <p className="mt-8 mb-3 rubik-24-semibold">
+            {formData[actionType].title}
+          </p>
+          <p className="rubik-16-regular text-primary-400">
+            {formData[actionType].description}
+          </p>
+          {actionType === AuthActionEnum.signup ? (
+            <AuthSignup />
+          ) : (
+            <AuthLogin />
+          )}
+        </div>
         <div
           className={`flex h-full w-1/2 flex-col justify-end bg-cover bg-center px-9 py-14 ${swapClass} transition-all duration-500 ease-out`}
           style={{
@@ -78,12 +79,9 @@ const Auth: React.FC = () => {
             Modern link organizer for{' '}
             <span className="text-primary-800">work and life.</span>
           </p>
-          <button
-            className="cursor-pointer rounded-md border px-14 py-4 rubik-16-medium"
-            onClick={handleSetActionType}
-          >
+          <Button variant="outlined" onClick={handleSetActionType}>
             {formData[actionType].button}
-          </button>
+          </Button>
         </div>
       </div>
     </div>
