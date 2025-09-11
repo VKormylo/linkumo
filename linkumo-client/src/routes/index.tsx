@@ -6,6 +6,7 @@ import Home from '~/pages/home/Home'
 import MainContainer from '~/pages/main-container/MainContainer'
 import MyCollections from '~/pages/my-collections/MyCollections'
 import Settings from '~/pages/settings/Settings'
+import VerifyEmail from '~/pages/verify-email/VerifyEmail'
 
 export default function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ export default function AppRoutes() {
       </Route>
       <Route path="/componentsPreview" element={<ComponentsPreview />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/verify-email" element={<VerifyEmail />} />
     </Routes>
   )
 }

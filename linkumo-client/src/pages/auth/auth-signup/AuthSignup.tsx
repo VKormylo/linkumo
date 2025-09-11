@@ -21,7 +21,7 @@ const AuthSignup: React.FC = () => {
   })
 
   return (
-    <form className="mt-6 flex h-full flex-col">
+    <form className="mt-7">
       <div className="flex flex-col gap-4.5">
         <FormInput
           {...register('email')}

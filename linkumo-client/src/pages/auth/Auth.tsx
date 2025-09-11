@@ -4,15 +4,19 @@ import AuthSignup from './auth-signup/AuthSignup'
 import { useState, type MouseEvent } from 'react'
 import AuthLogin from './auth-login/AuthLogin'
 import Button from '~/components/button/Button'
+import { useLocation } from 'react-router-dom'
 
 enum AuthActionEnum {
   signup = 'signup',
-  login = 'signin'
+  login = 'login'
 }
 
 const Auth: React.FC = () => {
+  const { state: authState } = useLocation()
+  const action = authState?.action
+
   const [actionType, setActionType] = useState<AuthActionEnum>(
-    AuthActionEnum.signup
+    action ?? AuthActionEnum.signup
   )
 
   const formData = {
