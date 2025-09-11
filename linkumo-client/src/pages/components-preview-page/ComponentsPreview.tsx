@@ -30,17 +30,17 @@ const ComponentsPreview = () => {
           startIcon={<SearchIcon />}
         />
         <div className="flex-row gap-[10px]">
-          <Button variant="primary" className="mt-10 w-xs">
+          <Button color="primary" className="mt-10 w-xs">
             Sign Up
           </Button>
-          <Button variant="primary-outlined" className="mt-10 w-xs">
+          <Button color="primary" variant="outlined" className="mt-10 w-xs">
             Sign Up
           </Button>
-          <Button variant="secondary-outlined" className="mt-10 w-xs">
+          <Button color="secondary" variant="outlined" className="mt-10 w-xs">
             Sign Up
           </Button>
           <Button
-            variant="primary"
+            color="primary"
             className="mt-10 w-xs"
             startIcon={<AddIcon />}
           >
