@@ -1,5 +1,5 @@
 import type { UserLogin, UserSignup } from '~/schemas/auth'
-import type { LoginResponse } from '~/types/auth.types'
+import type { AccessTokenResponse, LoginResponse } from '~/types/auth.types'
 import { URLs } from '~/constants/request'
 import { baseService } from './base-service'
 
@@ -16,6 +16,12 @@ export const authService = {
       data: user,
       method: 'POST',
       url: URLs.auth.login
+    })
+  },
+  refresh: () => {
+    return baseService.request<AccessTokenResponse>({
+      method: 'GET',
+      url: URLs.auth.refresh
     })
   },
   verifyEmail: (token: string) => {

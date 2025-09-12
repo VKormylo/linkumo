@@ -4,6 +4,8 @@ export interface UserResponse {
   user: User
 }
 
-export interface LoginResponse extends UserResponse {
+export interface AccessTokenResponse {
   accessToken: string
 }
+
+export interface LoginResponse extends UserResponse, AccessTokenResponse {}
