@@ -16,7 +16,7 @@ const AuthSignup: React.FC = () => {
     resolver: zodResolver(UserSignupSchema)
   })
 
-  const { mutate: handleSignup } = useMutation({
+  const { mutate: signup } = useMutation({
     mutationFn: authService.signup
   })
 
@@ -44,7 +44,7 @@ const AuthSignup: React.FC = () => {
         />
       </div>
       <Button
-        onClick={handleSubmit((data) => handleSignup(data))}
+        onClick={handleSubmit((data) => signup(data))}
         className="mt-5 mb-6"
         stretch
       >

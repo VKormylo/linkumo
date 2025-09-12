@@ -12,7 +12,7 @@ interface AuthContextParams {
   accessToken: string | null
   setAccessToken: React.Dispatch<React.SetStateAction<string | null>>
   isAuthenticated: boolean
-  logout: () => void
+  logout: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextParams | null>(null)
@@ -56,6 +56,11 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       async (error) => {
         const originalRequest = error.config
 
+        if (originalRequest.url?.includes('/refresh')) {
+          setAccessToken(null)
+          return Promise.reject(error)
+        }
+
         if (error.response.status === 401) {
           try {
             const { accessToken } = await authService.refresh()
@@ -79,8 +84,9 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   })
 
-  const logout = () => {
+  const logout = async () => {
     setAccessToken(null)
+    await authService.logout()
   }
 
   return (

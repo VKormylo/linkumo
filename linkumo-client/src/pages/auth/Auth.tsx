@@ -1,10 +1,7 @@
-import LogoIcon from '~/assets/logo.svg?react'
-import AuthBackground from '~/assets/images/auth-bg.png'
-import AuthSignup from './auth-signup/AuthSignup'
-import { useState, type MouseEvent } from 'react'
-import AuthLogin from './auth-login/AuthLogin'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Button from '~/components/button/Button'
-import { useLocation } from 'react-router-dom'
+import AuthBackground from '~/assets/images/auth-bg.png'
+import LogoIcon from '~/assets/logo.svg?react'
 
 enum AuthActionEnum {
   signup = 'signup',
@@ -12,12 +9,9 @@ enum AuthActionEnum {
 }
 
 const Auth: React.FC = () => {
-  const { state: authState } = useLocation()
-  const action = authState?.action
-
-  const [actionType, setActionType] = useState<AuthActionEnum>(
-    action ?? AuthActionEnum.signup
-  )
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const action = pathname.split('/').pop() as AuthActionEnum
 
   const formData = {
     [AuthActionEnum.signup]: {
@@ -32,25 +26,20 @@ const Auth: React.FC = () => {
     }
   }
 
-  function handleSetActionType(
-    e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>
-  ) {
-    e.preventDefault()
-
-    setActionType((prev) =>
-      prev === AuthActionEnum.signup
+  const handleAuthSwap = () => {
+    const actionType =
+      action === AuthActionEnum.signup
         ? AuthActionEnum.login
         : AuthActionEnum.signup
-    )
+
+    navigate(`/auth/${actionType}`)
   }
 
+  const formClass = action === AuthActionEnum.login ? 'translate-x-full' : ''
   const swapClass =
-    actionType === AuthActionEnum.login
+    action === AuthActionEnum.login
       ? '-translate-x-full items-end text-right'
       : 'items-start'
-
-  const formClass =
-    actionType === AuthActionEnum.login ? 'translate-x-full' : ''
 
   return (
     <div className="flex h-screen w-screen items-center bg-primary-50">
@@ -62,16 +51,12 @@ const Auth: React.FC = () => {
             <LogoIcon />
           </div>
           <p className="mt-8 mb-3 rubik-24-semibold">
-            {formData[actionType].title}
+            {formData[action].title}
           </p>
           <p className="rubik-16-regular text-primary-400">
-            {formData[actionType].description}
+            {formData[action].description}
           </p>
-          {actionType === AuthActionEnum.signup ? (
-            <AuthSignup />
-          ) : (
-            <AuthLogin />
-          )}
+          <Outlet />
         </div>
         <div
           className={`flex h-full w-1/2 flex-col justify-end bg-cover bg-center px-9 py-14 ${swapClass} transition-all duration-500 ease-out`}
@@ -83,8 +68,8 @@ const Auth: React.FC = () => {
             Modern link organizer for{' '}
             <span className="text-primary-800">work and life.</span>
           </p>
-          <Button variant="outlined" onClick={handleSetActionType}>
-            {formData[actionType].button}
+          <Button variant="outlined" onClick={handleAuthSwap}>
+            {formData[action].button}
           </Button>
         </div>
       </div>

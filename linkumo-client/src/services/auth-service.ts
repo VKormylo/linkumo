@@ -18,6 +18,12 @@ export const authService = {
       url: URLs.auth.login
     })
   },
+  logout: () => {
+    return baseService.request<void>({
+      method: 'GET',
+      url: URLs.auth.logout
+    })
+  },
   refresh: () => {
     return baseService.request<AccessTokenResponse>({
       method: 'GET',
