@@ -35,5 +35,12 @@ export const authService = {
       method: 'GET',
       url: `${URLs.auth.verifyEmail}?token=${token}`
     })
+  },
+  googleLogin: (idToken: string) => {
+    return baseService.request<LoginResponse>({
+      data: { idToken },
+      method: 'POST',
+      url: URLs.auth.googleLogin
+    })
   }
 }

@@ -4,6 +4,7 @@ export const URLs = {
     login: '/auth/login',
     logout: '/auth/logout',
     refresh: '/auth/refresh',
-    verifyEmail: '/auth/verify-email'
+    verifyEmail: '/auth/verify-email',
+    googleLogin: '/auth/google'
   }
-}
+} as const
