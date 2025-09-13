@@ -22,7 +22,7 @@ const VerifyEmail: React.FC = () => {
         setStatus('success')
 
         setTimeout(() => {
-          navigate('/auth', { state: { action: 'login' } })
+          navigate('/auth/login')
         }, 1000)
       })
       .catch(() => {
