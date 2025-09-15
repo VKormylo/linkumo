@@ -4,6 +4,7 @@ import Input from '~/components/input/Input'
 import SearchIcon from '~/assets//icons/search.svg?react'
 import AddIcon from '~/assets/icons/add.svg?react'
 import SelectInput from '~/components/select-input/SelectInput'
+import Dropdown from '~/components/dropdown/Dropdown'
 
 const ComponentsPreview = () => {
   const [inputValue, setInputValue] = useState('')
@@ -55,14 +56,56 @@ const ComponentsPreview = () => {
             Add
           </Button>
         </div>
-        <div>
-          <SelectInput
-            value={selectValue}
-            setValue={setSelectValue}
-            label="Select"
-            options={options}
-            className="mt-10"
+        <SelectInput
+          value={selectValue}
+          setValue={setSelectValue}
+          label="Select"
+          options={options}
+          className="mt-10"
+        />
+        <div className="mt-10">
+          <Dropdown
+            trigger={<label>Open</label>}
+            maxHeight={200}
+            position="right"
+            items={[
+              { label: 'Option 1' },
+              { label: 'Option 2' },
+              { label: 'Option 3' }
+            ]}
+            width="134px"
           />
+          <Dropdown
+            trigger={
+              <input
+                placeholder="Enter tag name"
+                className="border px-2 py-1"
+              />
+            }
+            maxHeight={120}
+            className="ml-10"
+            width="190px"
+          >
+            <ul>
+              {[
+                'frontend',
+                'backend',
+                'python',
+                'java',
+                'go',
+                'c++',
+                'php'
+              ].map((tag) => (
+                <li
+                  key={tag}
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100"
+                  onClick={() => console.log('Selected:', tag)}
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          </Dropdown>
         </div>
       </div>
     </div>
