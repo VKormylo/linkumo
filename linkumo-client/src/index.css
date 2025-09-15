@@ -53,7 +53,7 @@
 }
 
 @utility rubik-16-medium {
-  @apply font-rubik text-base font-medium;
+  @apply font-rubik text-base leading-tight font-medium;
 }
 
 @utility rubik-14-regular {
