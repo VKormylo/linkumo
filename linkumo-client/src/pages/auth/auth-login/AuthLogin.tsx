@@ -1,39 +1,81 @@
+import { useForm } from 'react-hook-form'
+import { useNavigate, useOutletContext } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { UserLoginSchema, type UserLogin } from '~/schemas/auth'
+import type { AuthOutletContext } from '~/types/auth.types'
+import { useAuthContext } from '~/context/authContext'
+import { authService } from '~/services/auth-service'
 import Checkbox from '~/components/checkbox/Checkbox'
-import Input from '~/components/input/Input'
+import FormInput from '~/components/form-input/FormInput'
+import Button from '~/components/button/Button'
 import GoogleIcon from '~/assets/icons/google.svg?react'
 
 const AuthLogin: React.FC = () => {
+  const navigate = useNavigate()
+  const { setAccessToken } = useAuthContext()
+  const { signInWithGoogle } = useOutletContext<AuthOutletContext>()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<UserLogin>({
+    resolver: zodResolver(UserLoginSchema)
+  })
+
+  const { mutate: login } = useMutation({
+    mutationFn: authService.login,
+    onSuccess: (data) => {
+      setAccessToken(data.accessToken)
+      navigate('/')
+    }
+  })
+
   return (
-    <div className="mt-7">
+    <form className="mt-7">
       <div className="flex flex-col gap-4.5">
-        <Input
+        <FormInput
+          {...register('email')}
           label="Email"
-          value=""
           placeholder="Enter your email address"
-          onChange={() => {}}
+          error={errors.email?.message}
         />
-        <Input
+        <FormInput
+          {...register('password')}
           label="Password"
-          value=""
+          type="password"
           placeholder="Enter password"
-          onChange={() => {}}
+          error={errors.password?.message}
         />
-        <Checkbox name="checkbox" label="Remember me" />
+        <Checkbox {...register('rememberMe')} label="Remember me" />
       </div>
-      <button className="mt-5 mb-6 w-full cursor-pointer rounded-md bg-primary-800 px-9 py-4 rubik-16-medium text-white">
+      <Button
+        onClick={handleSubmit((data) => login(data))}
+        className="mt-5 mb-6"
+        stretch
+      >
         Sign In
-      </button>
+      </Button>
       <div className="relative">
         <div className="absolute top-1/2 block h-0.5 w-full -translate-y-1/2 bg-primary-100"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 rubik-12-regular text-primary-400">
           or
         </div>
       </div>
-      <button className="mt-6 flex w-full cursor-pointer items-center justify-center gap-3 rounded-md border border-primary-100 px-9 py-4 rubik-14-regular">
-        <GoogleIcon />
+      <Button
+        onClick={signInWithGoogle}
+        color="tertiary"
+        variant="outlined"
+        size="small"
+        className="mt-6"
+        stretch
+        type="button"
+        startIcon={<GoogleIcon />}
+      >
         Sign in with Google
-      </button>
-    </div>
+      </Button>
+    </form>
   )
 }
 

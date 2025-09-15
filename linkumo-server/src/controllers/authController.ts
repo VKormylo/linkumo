@@ -124,7 +124,7 @@ export const refresh = catchAsync(async (req: Request, res: Response, next: Next
 })
 
 export const googleLogin = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const { idToken, rememberMe } = req.body
+  const { idToken } = req.body
 
   if (!idToken) {
     return next(new ErrorResponse(errors.GOOGLE_ID_TOKEN_REQUIRED, ErrorStatusCode.BAD_REQUEST))
@@ -168,7 +168,7 @@ export const googleLogin = catchAsync(async (req: Request, res: Response, next: 
   const accessToken = tokenService.generateAccessToken(user.id)
   const refreshToken = tokenService.generateRefreshToken(user.id)
 
-  tokenService.setRefreshTokenCookie(res, refreshToken, !rememberMe)
+  tokenService.setRefreshTokenCookie(res, refreshToken, false)
 
   const { password: _, ...safeUser } = user
 

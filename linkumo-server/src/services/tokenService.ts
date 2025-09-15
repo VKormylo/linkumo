@@ -33,9 +33,9 @@ const tokenService = {
   },
 
   setRefreshTokenCookie: (res: Response, token: string, isSession: boolean) => {
-    const defaultOptions = COOKIE_OPTIONS
+    const defaultOptions = { ...COOKIE_OPTIONS }
 
-    if (isSession) {
+    if (!isSession) {
       defaultOptions.expires = new Date(Date.now() + JWT_REFRESH_COOKIE_LIFETIME)
     }
 
