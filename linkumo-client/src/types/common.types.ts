@@ -1,6 +1,7 @@
 export type Variant = 'filled' | 'outlined'
 export type Color = 'primary' | 'secondary' | 'tertiary'
 export type Size = 'small' | 'medium' | 'large'
+export type Position = 'bottom' | 'top' | 'left' | 'right'
 
 export type TailwindStyles = React.ComponentProps<'div'>['className']
 
