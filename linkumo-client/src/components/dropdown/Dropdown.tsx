@@ -1,80 +1,93 @@
-import React, { useState, useRef, useEffect } from 'react'
-import type { TailwindStyles } from '~/types/common.types'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import type { Position, TailwindStyles } from '~/types/common.types'
+import Backdrop from '../backdrop/Backdrop'
+import { styles } from './Dropdown.styles'
 
-type DropdownItem = {
-  label: string
-  onClick?: () => void
-}
+type DropdownItem =
+  | {
+      label: string
+      onClick: () => void
+      to?: never
+    }
+  | {
+      label: string
+      to: string
+      onClick?: never
+    }
 
-type DropdownProps = {
+interface BaseDropdownProps {
   trigger: React.ReactNode
-  items?: DropdownItem[]
-  children?: React.ReactNode
-  position?: 'bottom' | 'top' | 'left' | 'right'
+  position?: Position
   maxHeight?: number
+  width?: number
   className?: TailwindStyles
-  width?: string
+  scrollable?: boolean
 }
+
+interface DropdownWithItems extends BaseDropdownProps {
+  items: DropdownItem[]
+  children?: never
+}
+
+interface DropdownWithChildren extends BaseDropdownProps {
+  children: React.ReactNode
+  items?: never
+}
+
+type DropdownProps = DropdownWithItems | DropdownWithChildren
 
 const Dropdown: React.FC<DropdownProps> = ({
   trigger,
   items,
   children,
+  maxHeight,
+  width,
   position = 'bottom',
-  maxHeight = 200,
-  className,
-  width = ''
+  className = '',
+  scrollable = false
 }) => {
-  const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false)
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setOpen(false)
-      }
+  const renderDropdownItem = (item: DropdownItem) => {
+    if (item.to) {
+      return (
+        <li key={item.label}>
+          <Link className={styles.listItem} to={item.to}>
+            {item.label}
+          </Link>
+        </li>
+      )
     }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
 
-  const positionClasses: Record<string, string> = {
-    bottom: 'top-full mt-2 left-0',
-    top: 'bottom-full mb-2 left-0',
-    left: 'right-full top-0 mr-2',
-    right: 'left-full top-0 ml-2'
+    return (
+      <li
+        key={item.label}
+        className={styles.listItem}
+        onClick={() => {
+          item.onClick?.()
+          setIsOpen(false)
+        }}
+      >
+        {item.label}
+      </li>
+    )
   }
 
   return (
-    <div ref={ref} className={`relative inline-block ${className}`}>
-      <div onClick={() => setOpen((prev) => !prev)}>{trigger}</div>
-
+    <div className={`relative inline-block ${className}`}>
+      <Backdrop isOpen={isOpen} onClick={() => setIsOpen(false)} transparent />
+      <div onClick={() => setIsOpen((prev) => !prev)}>{trigger}</div>
       <div
-        className={`absolute min-w-[150px] rounded border border-primary-100 bg-white shadow-lg transition-all duration-200 ease-out ${positionClasses[position]} ${open ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'} z-50 origin-top`}
+        className={`absolute z-50 origin-top rounded border border-primary-100 bg-white shadow-lg transition-all duration-200 ease-out ${styles.box(isOpen, scrollable)} ${styles.position[position]}`}
         style={{
-          maxHeight: open ? maxHeight : 0,
-          overflowY: 'auto',
-          width: width
+          maxHeight,
+          width
         }}
       >
-        {items ? (
-          <ul className="py-1">
-            {items.map((item, i) => (
-              <li
-                key={i}
-                onClick={() => {
-                  item.onClick?.()
-                  setOpen(false)
-                }}
-                className="cursor-pointer px-3 py-2 rubik-14-regular text-primary-800 hover:bg-primary-50"
-              >
-                {item.label}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className="p-1">{children}</div>
-        )}
+        <ul className="py-1">
+          {items ? items.map((item) => renderDropdownItem(item)) : children}
+        </ul>
       </div>
     </div>
   )

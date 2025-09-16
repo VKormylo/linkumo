@@ -66,14 +66,12 @@ const ComponentsPreview = () => {
         <div className="mt-10">
           <Dropdown
             trigger={<label>Open</label>}
-            maxHeight={200}
             position="right"
             items={[
-              { label: 'Option 1' },
-              { label: 'Option 2' },
-              { label: 'Option 3' }
+              { label: 'Option 1', to: '/option-1' },
+              { label: 'Option 2', onClick: () => {} },
+              { label: 'Option 3', onClick: () => {} }
             ]}
-            width="134px"
           />
           <Dropdown
             trigger={
@@ -84,27 +82,20 @@ const ComponentsPreview = () => {
             }
             maxHeight={120}
             className="ml-10"
-            width="190px"
+            width={190}
+            scrollable
           >
-            <ul>
-              {[
-                'frontend',
-                'backend',
-                'python',
-                'java',
-                'go',
-                'c++',
-                'php'
-              ].map((tag) => (
+            {['frontend', 'backend', 'python', 'java', 'go', 'c++', 'php'].map(
+              (tag) => (
                 <li
                   key={tag}
-                  className="cursor-pointer px-4 py-2 hover:bg-gray-100"
+                  className="cursor-pointer px-4 py-2 hover:bg-primary-50"
                   onClick={() => console.log('Selected:', tag)}
                 >
                   {tag}
                 </li>
-              ))}
-            </ul>
+              )
+            )}
           </Dropdown>
         </div>
       </div>
