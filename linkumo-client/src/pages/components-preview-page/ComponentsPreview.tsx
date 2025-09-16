@@ -3,10 +3,18 @@ import Button from '~/components/button/Button'
 import Input from '~/components/input/Input'
 import SearchIcon from '~/assets//icons/search.svg?react'
 import AddIcon from '~/assets/icons/add.svg?react'
+import SelectInput from '~/components/select-input/SelectInput'
 
 const ComponentsPreview = () => {
   const [inputValue, setInputValue] = useState('')
   const [searchValue, setSearchValue] = useState('')
+  const [selectValue, setSelectValue] = useState('1')
+
+  const options = [
+    { value: '1', title: 'Option 1' },
+    { value: '2', title: 'Option 2' },
+    { value: '3', title: 'Option 3' }
+  ]
 
   return (
     <div>
@@ -46,6 +54,15 @@ const ComponentsPreview = () => {
           >
             Add
           </Button>
+        </div>
+        <div>
+          <SelectInput
+            value={selectValue}
+            setValue={setSelectValue}
+            label="Select"
+            options={options}
+            className="mt-10"
+          />
         </div>
       </div>
     </div>
