@@ -22,35 +22,28 @@ const Input: React.FC<InputProps> = ({
   onChange,
   maxLength,
   required = false,
-  className,
+  className = '',
   startIcon,
   endIcon
 }) => {
-  const iconClass =
-    'ml-[7px] flex h-[18px] w-[18px] items-center'
+  const iconClass = `absolute top-1/2 -translate-y-1/2 ${startIcon ? 'left-0' : 'right-0'} cursor-pointer p-3 [&>svg]:w-[18px] [&>svg]:h-[18px]`
+  const leftIconClass = startIcon ? 'pl-11' : ''
+  const rightIconClass = endIcon ? 'pr-11' : ''
 
   return (
-    <div className="flex flex-col gap-2.5">
-      {label && (
-        <label className="rubik-16-medium">
-          {label}
-        </label>
-      )}
-      <div
-        className={`flex h-[50px] items-center rounded-md border border-primary-100 px-1.5 text-primary-800 focus-within:bg-primary-50 ${className}`}
-      >
-        {startIcon && <span className={iconClass}>{startIcon}</span>}
-        <input
-          type={type}
-          value={value}
-          placeholder={placeholder}
-          onChange={(e) => onChange(e.target.value)}
-          maxLength={maxLength}
-          required={required}
-          className="mx-3 flex-1 bg-transparent text-primary-800 placeholder:text-sm placeholder:text-primary-400 focus:outline-none"
-        />
-        {endIcon && <span className={iconClass}>{endIcon}</span>}
-      </div>
+    <div className={`relative flex flex-col gap-2.5 ${className}`}>
+      {label && <label className="rubik-16-medium">{label}</label>}
+      {startIcon && <button className={iconClass}>{startIcon}</button>}
+      <input
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        maxLength={maxLength}
+        required={required}
+        className={`w-full rounded-md border border-primary-100 bg-transparent px-4.5 ${leftIconClass} ${rightIconClass} py-3 rubik-16-regular text-primary-800 outline-none placeholder:text-sm placeholder:text-primary-400 focus:bg-primary-50`}
+      />
+      {endIcon && <button className={iconClass}>{endIcon}</button>}
     </div>
   )
 }
