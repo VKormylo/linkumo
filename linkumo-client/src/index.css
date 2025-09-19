@@ -44,6 +44,10 @@
   @apply font-rubik text-lg font-normal;
 }
 
+@utility rubik-18-medium {
+  @apply font-rubik text-lg font-medium;
+}
+
 @utility rubik-18-semibold {
   @apply font-rubik text-lg font-semibold;
 }
@@ -64,6 +68,6 @@
   @apply font-rubik text-xs font-normal;
 }
 
-@utility mulish-10-semibold {
-  @apply font-mulish text-xxs font-semibold;
+@utility mulish-12-semibold {
+  @apply font-mulish text-xs font-semibold;
 }
