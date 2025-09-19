@@ -9,17 +9,34 @@ import IconButton from '~/components/icon-button/IconButton'
 import Svg from '~/components/svg/Svg'
 import GridViewIcon from '~/assets/icons/grid-view.svg?react'
 import ListViewIcon from '~/assets/icons/list-view.svg?react'
+import Tag from '~/components/tag/Tag'
+import Modal from '~/components/modal/Modal'
+import LinkForm from '~/containers/modal-forms/link-form/LinkForm'
 
 const ComponentsPreview = () => {
   const [inputValue, setInputValue] = useState('')
   const [searchValue, setSearchValue] = useState('')
   const [selectValue, setSelectValue] = useState('1')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const options = [
     { value: '1', title: 'Option 1' },
     { value: '2', title: 'Option 2' },
     { value: '3', title: 'Option 3' }
   ]
+
+  const tagValues = [
+    'react',
+    'javascript',
+    'python',
+    'java',
+    'go',
+    'c++',
+    'php'
+  ]
+
+  const [tags, setTags] = useState(tagValues)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <div>
@@ -75,6 +92,8 @@ const ComponentsPreview = () => {
         />
         <div className="mt-10">
           <Dropdown
+            isOpen={isDropdownOpen}
+            setIsOpen={setIsDropdownOpen}
             trigger={<label>Open</label>}
             position="right"
             items={[
@@ -84,6 +103,8 @@ const ComponentsPreview = () => {
             ]}
           />
           <Dropdown
+            isOpen={isDropdownOpen}
+            setIsOpen={setIsDropdownOpen}
             trigger={
               <input
                 placeholder="Enter tag name"
@@ -95,18 +116,45 @@ const ComponentsPreview = () => {
             width={190}
             scrollable
           >
-            {['frontend', 'backend', 'python', 'java', 'go', 'c++', 'php'].map(
-              (tag) => (
-                <li
-                  key={tag}
-                  className="cursor-pointer px-4 py-2 hover:bg-primary-50"
-                  onClick={() => console.log('Selected:', tag)}
-                >
-                  {tag}
-                </li>
-              )
-            )}
+            {tags.map((tag) => (
+              <li
+                key={tag}
+                className="cursor-pointer px-4 py-2 hover:bg-primary-50"
+                onClick={() => console.log('Selected:', tag)}
+              >
+                {tag}
+              </li>
+            ))}
           </Dropdown>
+        </div>
+        <div className="flex gap-4">
+          <Tag value="react" />
+          {tags.map((tag) => (
+            <Tag
+              value={tag}
+              key={tag}
+              onDelete={() => setTags(tags.filter((t) => t !== tag))}
+            />
+          ))}
+        </div>
+        <div>
+          <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            title="Create link"
+          >
+            <LinkForm
+              type="edit"
+              data={{
+                link: 'https://www.google.com',
+                description: 'Google',
+                tags: ['google', 'search']
+              }}
+              onCancel={() => setIsModalOpen(false)}
+              onSave={() => setIsModalOpen(false)}
+            />
+          </Modal>
         </div>
       </div>
     </div>
