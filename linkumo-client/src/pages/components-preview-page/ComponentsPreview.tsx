@@ -12,6 +12,7 @@ import ListViewIcon from '~/assets/icons/list-view.svg?react'
 import Tag from '~/components/tag/Tag'
 import Modal from '~/components/modal/Modal'
 import LinkForm from '~/containers/modal-forms/link-form/LinkForm'
+import CollectionForm from '~/containers/modal-forms/collection-form/CollectionForm'
 
 const ComponentsPreview = () => {
   const [inputValue, setInputValue] = useState('')
@@ -36,7 +37,8 @@ const ComponentsPreview = () => {
   ]
 
   const [tags, setTags] = useState(tagValues)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isLinkModalOpen, setIsLinkModalOpen] = useState(false)
+  const [isCollectionModalOpen, setIsCollectionModalOpen] = useState(false)
 
   return (
     <div>
@@ -137,22 +139,32 @@ const ComponentsPreview = () => {
             />
           ))}
         </div>
-        <div>
-          <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
+        <div className="flex gap-5">
+          <button onClick={() => setIsLinkModalOpen(true)}>
+            Open Link Modal
+          </button>
+          <button onClick={() => setIsCollectionModalOpen(true)}>
+            Open Collection Modal
+          </button>
           <Modal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            isOpen={isLinkModalOpen}
+            onClose={() => setIsLinkModalOpen(false)}
             title="Create link"
           >
             <LinkForm
-              type="edit"
-              data={{
-                link: 'https://www.google.com',
-                description: 'Google',
-                tags: ['google', 'search']
-              }}
-              onCancel={() => setIsModalOpen(false)}
-              onSave={() => setIsModalOpen(false)}
+              type="create"
+              onCancel={() => setIsLinkModalOpen(false)}
+              onSave={() => setIsLinkModalOpen(false)}
+            />
+          </Modal>
+          <Modal
+            isOpen={isCollectionModalOpen}
+            onClose={() => setIsCollectionModalOpen(false)}
+            title="Create collection"
+          >
+            <CollectionForm
+              onCancel={() => setIsCollectionModalOpen(false)}
+              onSave={() => setIsCollectionModalOpen(false)}
             />
           </Modal>
         </div>
