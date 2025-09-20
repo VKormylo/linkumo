@@ -17,7 +17,11 @@ const Svg: React.FC<SvgProps> = ({
 }) => {
   return (
     <div className={`${className} ${color}`}>
-      <Component width={width} height={height} />
+      <Component
+        className="transition-all duration-200"
+        width={width}
+        height={height}
+      />
     </div>
   )
 }

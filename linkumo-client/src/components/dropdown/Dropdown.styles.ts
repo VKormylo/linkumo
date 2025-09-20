@@ -12,8 +12,8 @@ export const styles = {
     return `${style[isOpen ? 'open' : 'hidden']} ${style[scrollable ? 'scroll' : 'default']}`
   },
   position: {
-    bottom: 'top-full mt-2 left-0',
-    top: 'bottom-full mb-2 left-0',
+    bottom: 'top-full mt-1 left-0',
+    top: 'bottom-full mb-1 left-0',
     left: 'right-full top-0 mr-2',
     right: 'left-full top-0 ml-2'
   } as Record<Position, string>,

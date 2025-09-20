@@ -1,7 +1,7 @@
 import { useState } from 'react'
+import { useClickOutside } from '~/hooks/useClickOutside'
 import type { TailwindStyles } from '~/types/common.types'
 import ArrowDownIcon from '~/assets/icons/arrow-down.svg?react'
-import Backdrop from '../backdrop/Backdrop'
 import { styles } from './SelectInput.styles'
 
 interface SelectOption {
@@ -29,6 +29,8 @@ const SelectInput = ({
     options.find((option) => option.value === value)!.title
   )
 
+  const ref = useClickOutside(() => setIsOpen(false))
+
   const handleSelect = (e: React.MouseEvent<HTMLLIElement>) => {
     const value = (e.target as HTMLLIElement).dataset.value!
     const title = (e.target as HTMLLIElement).textContent!
@@ -39,23 +41,23 @@ const SelectInput = ({
 
   return (
     <div
+      ref={ref}
       className={`relative inline-block min-w-[150px] cursor-pointer ${className}`}
     >
-      <Backdrop isOpen={isOpen} onClick={() => setIsOpen(false)} transparent />
       {label && (
-        <span className="absolute top-0 left-2 z-51 -translate-y-1/2 bg-white px-2 rubik-14-regular">
+        <span className="absolute top-0 left-2 z-21 -translate-y-1/2 bg-white px-2 rubik-14-regular">
           {label}
         </span>
       )}
       <div
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`relative z-50 flex items-center justify-between ${styles.box.color.primary} ${styles.box.size.medium} ${styles.box.open(isOpen)}`}
+        className={`relative z-20 flex items-center justify-between ${styles.box.color.primary} ${styles.box.size.medium} ${styles.box.open(isOpen)}`}
       >
         <span>{selectedOption}</span>
         <ArrowDownIcon className={`${isOpen && 'rotate-180'}`} />
       </div>
       <ul
-        className={`absolute z-51 w-full origin-top rounded-sm bg-white drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)] transition-all duration-200 ease-in-out ${styles.options(isOpen)}`}
+        className={`absolute z-21 w-full origin-top rounded-sm bg-white drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)] transition-all duration-200 ease-in-out ${styles.options(isOpen)}`}
       >
         {options.map((item) => (
           <li

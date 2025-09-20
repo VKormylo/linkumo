@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import { useClickOutside } from '~/hooks/useClickOutside'
 import type { Position, TailwindStyles } from '~/types/common.types'
-import Backdrop from '../backdrop/Backdrop'
 import { styles } from './Dropdown.styles'
 
 type DropdownItem =
@@ -17,12 +17,17 @@ type DropdownItem =
     }
 
 interface BaseDropdownProps {
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   trigger: React.ReactNode
   position?: Position
   maxHeight?: number
   width?: number
   className?: TailwindStyles
   scrollable?: boolean
+  disabled?: boolean
+  disableToggle?: boolean
+  multipleChoice?: boolean
 }
 
 interface DropdownWithItems extends BaseDropdownProps {
@@ -38,6 +43,8 @@ interface DropdownWithChildren extends BaseDropdownProps {
 type DropdownProps = DropdownWithItems | DropdownWithChildren
 
 const Dropdown: React.FC<DropdownProps> = ({
+  isOpen,
+  setIsOpen,
   trigger,
   items,
   children,
@@ -45,9 +52,12 @@ const Dropdown: React.FC<DropdownProps> = ({
   width,
   position = 'bottom',
   className = '',
-  scrollable = false
+  scrollable = false,
+  disabled = false,
+  disableToggle = false,
+  multipleChoice = false
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const ref = useClickOutside(() => setIsOpen(false))
 
   const renderDropdownItem = (item: DropdownItem) => {
     if (item.to) {
@@ -60,35 +70,40 @@ const Dropdown: React.FC<DropdownProps> = ({
       )
     }
 
-    return (
-      <li
-        key={item.label}
-        className={styles.listItem}
-        onClick={() => {
-          item.onClick?.()
-          setIsOpen(false)
-        }}
-      >
-        {item.label}
-      </li>
-    )
+    if (item.onClick) {
+      return (
+        <li
+          key={item.label}
+          className={styles.listItem}
+          onClick={() => {
+            item.onClick()
+            if (!multipleChoice) setIsOpen(false)
+          }}
+        >
+          {item.label}
+        </li>
+      )
+    }
   }
 
   return (
-    <div className={`relative inline-block ${className}`}>
-      <Backdrop isOpen={isOpen} onClick={() => setIsOpen(false)} transparent />
-      <div onClick={() => setIsOpen((prev) => !prev)}>{trigger}</div>
-      <div
-        className={`absolute z-50 origin-top rounded border border-primary-100 bg-white shadow-lg transition-all duration-200 ease-out ${styles.box(isOpen, scrollable)} ${styles.position[position]}`}
-        style={{
-          maxHeight,
-          width
-        }}
-      >
-        <ul className="py-1">
-          {items ? items.map((item) => renderDropdownItem(item)) : children}
-        </ul>
+    <div ref={ref} className={`relative inline-block ${className}`}>
+      <div onClick={() => !disableToggle && setIsOpen((prev) => !prev)}>
+        {trigger}
       </div>
+      {!disabled && (
+        <div
+          className={`absolute z-20 origin-top rounded border border-primary-100 bg-white drop-shadow-[0_8px_15px_rgba(0,0,0,0.07)] transition-all duration-200 ease-out ${styles.box(isOpen, scrollable)} ${styles.position[position]}`}
+          style={{
+            maxHeight,
+            width
+          }}
+        >
+          <ul className="py-1">
+            {items ? items.map((item) => renderDropdownItem(item)) : children}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

@@ -9,17 +9,36 @@ import IconButton from '~/components/icon-button/IconButton'
 import Svg from '~/components/svg/Svg'
 import GridViewIcon from '~/assets/icons/grid-view.svg?react'
 import ListViewIcon from '~/assets/icons/list-view.svg?react'
+import Tag from '~/components/tag/Tag'
+import Modal from '~/components/modal/Modal'
+import LinkForm from '~/containers/modal-forms/link-form/LinkForm'
+import CollectionForm from '~/containers/modal-forms/collection-form/CollectionForm'
 
 const ComponentsPreview = () => {
   const [inputValue, setInputValue] = useState('')
   const [searchValue, setSearchValue] = useState('')
   const [selectValue, setSelectValue] = useState('1')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const options = [
     { value: '1', title: 'Option 1' },
     { value: '2', title: 'Option 2' },
     { value: '3', title: 'Option 3' }
   ]
+
+  const tagValues = [
+    'react',
+    'javascript',
+    'python',
+    'java',
+    'go',
+    'c++',
+    'php'
+  ]
+
+  const [tags, setTags] = useState(tagValues)
+  const [isLinkModalOpen, setIsLinkModalOpen] = useState(false)
+  const [isCollectionModalOpen, setIsCollectionModalOpen] = useState(false)
 
   return (
     <div>
@@ -75,6 +94,8 @@ const ComponentsPreview = () => {
         />
         <div className="mt-10">
           <Dropdown
+            isOpen={isDropdownOpen}
+            setIsOpen={setIsDropdownOpen}
             trigger={<label>Open</label>}
             position="right"
             items={[
@@ -84,6 +105,8 @@ const ComponentsPreview = () => {
             ]}
           />
           <Dropdown
+            isOpen={isDropdownOpen}
+            setIsOpen={setIsDropdownOpen}
             trigger={
               <input
                 placeholder="Enter tag name"
@@ -95,18 +118,55 @@ const ComponentsPreview = () => {
             width={190}
             scrollable
           >
-            {['frontend', 'backend', 'python', 'java', 'go', 'c++', 'php'].map(
-              (tag) => (
-                <li
-                  key={tag}
-                  className="cursor-pointer px-4 py-2 hover:bg-primary-50"
-                  onClick={() => console.log('Selected:', tag)}
-                >
-                  {tag}
-                </li>
-              )
-            )}
+            {tags.map((tag) => (
+              <li
+                key={tag}
+                className="cursor-pointer px-4 py-2 hover:bg-primary-50"
+                onClick={() => console.log('Selected:', tag)}
+              >
+                {tag}
+              </li>
+            ))}
           </Dropdown>
+        </div>
+        <div className="flex gap-4">
+          <Tag value="react" />
+          {tags.map((tag) => (
+            <Tag
+              value={tag}
+              key={tag}
+              onDelete={() => setTags(tags.filter((t) => t !== tag))}
+            />
+          ))}
+        </div>
+        <div className="flex gap-5">
+          <button onClick={() => setIsLinkModalOpen(true)}>
+            Open Link Modal
+          </button>
+          <button onClick={() => setIsCollectionModalOpen(true)}>
+            Open Collection Modal
+          </button>
+          <Modal
+            isOpen={isLinkModalOpen}
+            onClose={() => setIsLinkModalOpen(false)}
+            title="Create link"
+          >
+            <LinkForm
+              type="create"
+              onCancel={() => setIsLinkModalOpen(false)}
+              onSave={() => setIsLinkModalOpen(false)}
+            />
+          </Modal>
+          <Modal
+            isOpen={isCollectionModalOpen}
+            onClose={() => setIsCollectionModalOpen(false)}
+            title="Create collection"
+          >
+            <CollectionForm
+              onCancel={() => setIsCollectionModalOpen(false)}
+              onSave={() => setIsCollectionModalOpen(false)}
+            />
+          </Modal>
         </div>
       </div>
     </div>
