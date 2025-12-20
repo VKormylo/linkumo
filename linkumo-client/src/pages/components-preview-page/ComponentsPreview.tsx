@@ -13,6 +13,9 @@ import Tag from '~/components/tag/Tag'
 import Modal from '~/components/modal/Modal'
 import LinkForm from '~/containers/modal-forms/link-form/LinkForm'
 import CollectionForm from '~/containers/modal-forms/collection-form/CollectionForm'
+import LinkCard from '~/components/link-card/LinkCard'
+import LinkItem from '~/components/link-item/LinkItem'
+import LinksContainer from '~/containers/links-container/LinksContainer'
 
 const ComponentsPreview = () => {
   const [inputValue, setInputValue] = useState('')
@@ -39,6 +42,45 @@ const ComponentsPreview = () => {
   const [tags, setTags] = useState(tagValues)
   const [isLinkModalOpen, setIsLinkModalOpen] = useState(false)
   const [isCollectionModalOpen, setIsCollectionModalOpen] = useState(false)
+
+  const links = [
+    {
+      url: 'https://youtube.com',
+      title: 'How to build a fullstack App with React and Node.js',
+      tags: ['react', 'node.js'],
+      isFavorite: false
+    },
+    {
+      url: 'https://youtube.com',
+      title: 'How to build a fullstack App with React and Node.js',
+      tags: ['react', 'node.js'],
+      isFavorite: false
+    },
+    {
+      url: 'https://youtube.com',
+      title: 'How to build a fullstack App with React and Node.js',
+      tags: ['react', 'node.js'],
+      isFavorite: false
+    },
+    {
+      url: 'https://youtube.com',
+      title: 'How to build a fullstack App with React and Node.js',
+      tags: ['react', 'node.js'],
+      isFavorite: false
+    },
+    {
+      url: 'https://youtube.com',
+      title: 'How to build a fullstack App with React and Node.js',
+      tags: ['react', 'node.js'],
+      isFavorite: false
+    },
+    {
+      url: 'https://youtube.com',
+      title: 'How to build a fullstack App with React and Node.js',
+      tags: ['react', 'node.js'],
+      isFavorite: false
+    }
+  ]
 
   return (
     <div>
@@ -81,7 +123,12 @@ const ComponentsPreview = () => {
           <IconButton onClick={() => {}}>
             <Svg Component={GridViewIcon} width={28} height={28} />
           </IconButton>
-          <IconButton color="secondary" outlined onClick={() => {}}>
+          <IconButton
+            color="secondary"
+            outlined
+            onClick={() => {}}
+            size="large"
+          >
             <Svg Component={ListViewIcon} width={28} height={28} />
           </IconButton>
         </div>
@@ -167,6 +214,25 @@ const ComponentsPreview = () => {
               onSave={() => setIsCollectionModalOpen(false)}
             />
           </Modal>
+        </div>
+        <div>
+          <LinkCard
+            url="https://youtube.com"
+            title="How to build a fullstack App with React and Node.js"
+            tags={['react', 'node.js']}
+            isFavorited={false}
+          />
+          <div className="flex w-[1000px] flex-col gap-4">
+            <LinkItem
+              url="https://youtube.com"
+              title="How to build a fullstack App with React and Node.js"
+              tags={['react', 'node.js']}
+              isFavorited={false}
+            />
+          </div>
+        </div>
+        <div>
+          <LinksContainer links={links} view="grid" />
         </div>
       </div>
     </div>

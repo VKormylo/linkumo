@@ -7,6 +7,11 @@ import { styles } from './Dropdown.styles'
 type DropdownItem =
   | {
       label: string
+      onClick?: never
+      to?: never
+    }
+  | {
+      label: string
       onClick: () => void
       to?: never
     }
@@ -84,6 +89,12 @@ const Dropdown: React.FC<DropdownProps> = ({
         </li>
       )
     }
+
+    return (
+      <li key={item.label} className={styles.listItem}>
+        {item.label}
+      </li>
+    )
   }
 
   return (

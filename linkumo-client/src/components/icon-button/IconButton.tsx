@@ -1,8 +1,9 @@
-import type { Color, TailwindStyles } from '~/types/common.types'
+import type { Color, Size, TailwindStyles } from '~/types/common.types'
 import { styles } from './IconButton.styles'
 
 interface BaseProps {
   onClick: () => void
+  rounded?: 'default' | 'full'
   className?: TailwindStyles
   children: React.ReactNode
 }
@@ -11,17 +12,21 @@ type IconButtonProps =
   | (BaseProps & {
       outlined: true
       color?: Color
+      size?: Size
       isToggled?: boolean
     })
   | (BaseProps & {
       outlined?: false
       color?: never
+      size?: never
       isToggled?: never
     })
 
 const IconButton: React.FC<IconButtonProps> = ({
   onClick,
   children,
+  size,
+  rounded = 'default',
   color = 'primary',
   outlined = false,
   isToggled = false,
@@ -30,7 +35,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`flex cursor-pointer items-center transition-all duration-200 ${styles(outlined, color, isToggled)} ${className}`}
+      className={`flex cursor-pointer items-center justify-center transition-all duration-200 ${styles.base(outlined, color, isToggled, rounded)} ${size ? styles.size[size] : ''} ${className}`}
     >
       {children}
     </button>

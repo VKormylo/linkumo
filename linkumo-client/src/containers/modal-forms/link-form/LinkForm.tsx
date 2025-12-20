@@ -45,10 +45,10 @@ const LinkForm: React.FC<LinkFormProps> = ({
           error={errors.link?.message}
         />
         <Textarea
-          label="Add description:"
-          placeholder="Description"
-          {...register('description')}
-          error={errors.description?.message}
+          label="Add title:"
+          placeholder="Title"
+          {...register('title')}
+          error={errors.title?.message}
         />
         <TagsInput tags={tags} setTags={setTags} />
       </div>
