@@ -2,7 +2,7 @@ import z from 'zod'
 
 export const LinkSchema = z.object({
   link: z.url('Invalid link'),
-  description: z.string().min(2, 'Description is required'),
+  title: z.string().min(2, 'Title is required'),
   tags: z.array(z.string())
 })
 

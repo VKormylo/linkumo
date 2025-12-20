@@ -3,6 +3,7 @@ import { useClickOutside } from '~/hooks/useClickOutside'
 import type { TailwindStyles } from '~/types/common.types'
 import ArrowDownIcon from '~/assets/icons/arrow-down.svg?react'
 import { styles } from './SelectInput.styles'
+import Svg from '../svg/Svg'
 
 interface SelectOption {
   value: string
@@ -54,7 +55,12 @@ const SelectInput = ({
         className={`relative z-20 flex items-center justify-between ${styles.box.color.primary} ${styles.box.size.medium} ${styles.box.open(isOpen)}`}
       >
         <span>{selectedOption}</span>
-        <ArrowDownIcon className={`${isOpen && 'rotate-180'}`} />
+        <Svg
+          Component={ArrowDownIcon}
+          width={10}
+          height={14}
+          className={`${isOpen && 'rotate-180'}`}
+        />
       </div>
       <ul
         className={`absolute z-21 w-full origin-top rounded-sm bg-white drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)] transition-all duration-200 ease-in-out ${styles.options(isOpen)}`}

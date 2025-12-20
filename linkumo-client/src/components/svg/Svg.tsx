@@ -5,6 +5,7 @@ interface SvgProps {
   color?: string
   width?: number
   height?: number
+  filled?: boolean
   className?: TailwindStyles
 }
 
@@ -13,6 +14,7 @@ const Svg: React.FC<SvgProps> = ({
   color = 'text-primary-800',
   width = 24,
   height = 24,
+  filled = false,
   className = ''
 }) => {
   return (
@@ -21,6 +23,7 @@ const Svg: React.FC<SvgProps> = ({
         className="transition-all duration-200"
         width={width}
         height={height}
+        fill={filled ? 'currentColor' : 'none'}
       />
     </div>
   )
