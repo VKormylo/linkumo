@@ -10,7 +10,9 @@ const errors = {
   USER_NO_LONGER_EXISTS: 'The user belonging to this token does no longer exist.',
   INVALID_GOOGLE_TOKEN: 'Invalid Google ID token!',
   GOOGLE_AUTH_FAILED: 'Google authentication failed!',
-  GOOGLE_ID_TOKEN_REQUIRED: 'Google ID token is required!'
+  GOOGLE_ID_TOKEN_REQUIRED: 'Google ID token is required!',
+  LINK_ID_REQUIRED: 'Link ID is required!',
+  LINK_NOT_FOUND: 'Link not found!'
 }
 
 export default errors
