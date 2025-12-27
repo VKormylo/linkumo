@@ -1,9 +1,11 @@
 import { NextFunction, Response } from 'express'
-import { catchAsync } from '~/utils/catchAsync'
-import { type ProtectedRequest } from '~/types/api.types'
-import { type Link } from '~/types/link.types'
-import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
+
 import errors from '~/constants/errors'
+import { type ProtectedRequest } from '~/types/api.types'
+import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
+import { type Link } from '~/types/link.types'
+
+import { catchAsync } from '~/utils/catchAsync'
 
 import * as linkService from '~/services/linkService'
 

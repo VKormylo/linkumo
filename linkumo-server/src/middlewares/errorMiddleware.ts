@@ -1,6 +1,8 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
-import { ErrorResponse, ErrorStatusCode, ErrorStatus } from '~/types/error.types'
+
 import config from '~/configs'
+
+import { ErrorResponse, ErrorStatusCode, ErrorStatus } from '~/types/error.types'
 
 const sendErrorDev = (err: ErrorResponse, res: Response) => {
   res.status(err.statusCode).json({
@@ -11,7 +13,7 @@ const sendErrorDev = (err: ErrorResponse, res: Response) => {
   })
 }
 
-export const handleError: ErrorRequestHandler = (err: any, _: Request, res: Response, __: NextFunction) => {
+export const handleError: ErrorRequestHandler = (err: ErrorResponse, _: Request, res: Response, __: NextFunction) => {
   err.statusCode = err.statusCode || ErrorStatusCode.INTERNAL_SERVER_ERROR
   err.status = err.status || ErrorStatus.ERROR
 

@@ -1,6 +1,8 @@
 import { Response } from 'express'
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
+
 import config from '~/configs'
+
 import { COOKIE_OPTIONS, JWT_REFRESH_COOKIE_LIFETIME, REFRESH_TOKEN_COOKIE_NAME } from '~/constants'
 
 const tokenService = {

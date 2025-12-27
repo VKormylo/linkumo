@@ -1,7 +1,9 @@
 import { OAuth2Client } from 'google-auth-library'
+
 import config from '~/configs'
-import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
+
 import errors from '~/constants/errors'
+import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
 
 const client = new OAuth2Client(config.GOOGLE_CLIENT_ID)
 
@@ -34,7 +36,7 @@ const googleAuthService = {
         picture: payload.picture,
         email_verified: payload.email_verified || false
       }
-    } catch (error) {
+    } catch (_) {
       throw new ErrorResponse(errors.GOOGLE_AUTH_FAILED, ErrorStatusCode.UNAUTHORIZED)
     }
   }

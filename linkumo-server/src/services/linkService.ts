@@ -1,7 +1,8 @@
 import { prisma } from '~/lib/prisma'
+
+import errors from '~/constants/errors'
 import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
 import { Link } from '~/types/link.types'
-import errors from '~/constants/errors'
 
 export const getAll = async (userId: string) => {
   const links = await prisma.link.findMany({

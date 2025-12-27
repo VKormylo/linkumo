@@ -1,4 +1,5 @@
 import express from 'express'
+
 import * as linkController from '~/controllers/linkController'
 import * as authMiddleware from '~/middlewares/authMiddleware'
 

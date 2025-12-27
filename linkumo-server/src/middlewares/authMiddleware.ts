@@ -1,9 +1,14 @@
 import { NextFunction, Request, Response } from 'express'
-import { catchAsync } from '~/utils/catchAsync'
-import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
+
 import config from '~/configs'
+
 import { prisma } from '~/lib/prisma'
+
 import errors from '~/constants/errors'
+import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
+
+import { catchAsync } from '~/utils/catchAsync'
+
 import tokenService from '~/services/tokenService'
 
 interface ProtectedRequest extends Request {

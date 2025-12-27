@@ -1,15 +1,19 @@
-import { NextFunction, Request, Response } from 'express'
 import bcrypt from 'bcryptjs'
-import { prisma } from '~/lib/prisma'
-import { catchAsync } from '~/utils/catchAsync'
-import { BCRYPT_SALT_ROUNDS } from '~/constants'
+import { NextFunction, Request, Response } from 'express'
+
 import config from '~/configs'
-import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
-import { COOKIE_OPTIONS, REFRESH_TOKEN_COOKIE_NAME } from '~/constants/index'
-import emailService from '~/services/emailService'
+
+import { prisma } from '~/lib/prisma'
+
+import { BCRYPT_SALT_ROUNDS, COOKIE_OPTIONS, REFRESH_TOKEN_COOKIE_NAME } from '~/constants'
 import errors from '~/constants/errors'
-import tokenService from '~/services/tokenService'
+import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
+
+import { catchAsync } from '~/utils/catchAsync'
+
+import emailService from '~/services/emailService'
 import googleAuthService from '~/services/googleAuthService'
+import tokenService from '~/services/tokenService'
 
 export const signup = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const { name, email, password } = req.body

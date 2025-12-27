@@ -1,5 +1,6 @@
-import { transporter } from '~/lib/nodemailer'
 import config from '~/configs'
+
+import { transporter } from '~/lib/nodemailer'
 
 const emailService = {
   sendVerificationEmail: async (email: string, token: string) => {
