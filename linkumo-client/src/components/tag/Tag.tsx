@@ -1,6 +1,8 @@
 import type { TailwindStyles } from '~/types/common.types'
-import IconButton from '../icon-button/IconButton'
-import Svg from '../svg/Svg'
+
+import IconButton from '~/components/icon-button/IconButton'
+import Svg from '~/components/svg/Svg'
+
 import CrossIcon from '~/assets/icons/cross.svg?react'
 
 interface TagProps {

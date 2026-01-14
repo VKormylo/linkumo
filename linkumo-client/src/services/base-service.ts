@@ -1,11 +1,14 @@
-import { axiosClient } from '~/plugins/axiosClient'
 import { isAxiosError, type AxiosResponse } from 'axios'
-import { ResponseError } from '~/exceptions/response-error'
+
+import { axiosClient } from '~/plugins/axiosClient'
+
 import type {
   ErrorResponse,
   RequestParams,
   ResponseStatus
 } from '~/types/common.types'
+
+import { ResponseError } from '~/exceptions/response-error'
 
 interface APIResponse<T> {
   status: ResponseStatus

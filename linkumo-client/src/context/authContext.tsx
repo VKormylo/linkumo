@@ -5,7 +5,9 @@ import {
   useLayoutEffect,
   useState
 } from 'react'
+
 import { axiosClient } from '~/plugins/axiosClient'
+
 import { authService } from '~/services/auth-service'
 
 interface AuthContextParams {

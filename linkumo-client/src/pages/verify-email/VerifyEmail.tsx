@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+
 import { authService } from '~/services/auth-service'
 
 type Status = 'pending' | 'success' | 'error'

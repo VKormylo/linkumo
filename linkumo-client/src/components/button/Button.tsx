@@ -1,5 +1,7 @@
-import type React from 'react'
+import React from 'react'
+
 import type { Color, Size, Variant } from '~/types/common.types'
+
 import { buttonStyles } from './Button.styles'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

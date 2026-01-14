@@ -1,6 +1,7 @@
-import Backdrop from '../backdrop/Backdrop'
-import IconButton from '../icon-button/IconButton'
-import Svg from '../svg/Svg'
+import Backdrop from '~/components/backdrop/Backdrop'
+import IconButton from '~/components/icon-button/IconButton'
+import Svg from '~/components/svg/Svg'
+
 import CrossIcon from '~/assets/icons/cross.svg?react'
 
 interface ModalProps {

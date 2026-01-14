@@ -1,4 +1,5 @@
-import type React from 'react'
+import React from 'react'
+
 import LinkCard from '~/components/link-card/LinkCard'
 import LinkItem from '~/components/link-item/LinkItem'
 

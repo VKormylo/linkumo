@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import { useClickOutside } from '~/hooks/useClickOutside'
+
 import type { Position, TailwindStyles } from '~/types/common.types'
+
 import { styles } from './Dropdown.styles'
 
 type DropdownItem =

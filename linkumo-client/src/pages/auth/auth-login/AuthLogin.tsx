@@ -1,14 +1,20 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate, useOutletContext } from 'react-router-dom'
-import { useMutation } from '@tanstack/react-query'
+
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
+
+import { authService } from '~/services/auth-service'
+
+import { useAuthContext } from '~/context/authContext'
+
 import { UserLoginSchema, type UserLogin } from '~/schemas/auth'
 import type { AuthOutletContext } from '~/types/auth.types'
-import { useAuthContext } from '~/context/authContext'
-import { authService } from '~/services/auth-service'
+
+import Button from '~/components/button/Button'
 import Checkbox from '~/components/checkbox/Checkbox'
 import FormInput from '~/components/form-input/FormInput'
-import Button from '~/components/button/Button'
+
 import GoogleIcon from '~/assets/icons/google.svg?react'
 
 const AuthLogin: React.FC = () => {

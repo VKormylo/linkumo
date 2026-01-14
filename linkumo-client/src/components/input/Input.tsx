@@ -1,4 +1,5 @@
-import type React from 'react'
+import React from 'react'
+
 import type { TailwindStyles } from '~/types/common.types'
 
 type InputProps = {

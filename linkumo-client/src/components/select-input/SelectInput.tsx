@@ -1,9 +1,14 @@
 import { useState } from 'react'
+
 import { useClickOutside } from '~/hooks/useClickOutside'
+
 import type { TailwindStyles } from '~/types/common.types'
+
+import Svg from '~/components/svg/Svg'
+
 import ArrowDownIcon from '~/assets/icons/arrow-down.svg?react'
+
 import { styles } from './SelectInput.styles'
-import Svg from '../svg/Svg'
 
 interface SelectOption {
   value: string

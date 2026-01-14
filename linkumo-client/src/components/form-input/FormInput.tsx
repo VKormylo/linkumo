@@ -1,4 +1,5 @@
 import React from 'react'
+
 import type { TailwindStyles } from '~/types/common.types'
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {

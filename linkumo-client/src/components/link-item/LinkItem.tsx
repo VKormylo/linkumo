@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import Tag from '../tag/Tag'
-import Dropdown from '../dropdown/Dropdown'
-import IconButton from '../icon-button/IconButton'
+
+import Dropdown from '~/components/dropdown/Dropdown'
+import ExternalLink from '~/components/external-link/ExternalLink'
+import IconButton from '~/components/icon-button/IconButton'
+import Svg from '~/components/svg/Svg'
+import Tag from '~/components/tag/Tag'
+
 import ArrowDownIcon from '~/assets/icons/arrow-down.svg?react'
-import HeartIcon from '~/assets/icons/heart.svg?react'
 import DotsIcon from '~/assets/icons/dots.svg?react'
-import Svg from '../svg/Svg'
-import ExternalLink from '../external-link/ExternalLink'
+import HeartIcon from '~/assets/icons/heart.svg?react'
 
 interface LinkItemProps {
   url: string

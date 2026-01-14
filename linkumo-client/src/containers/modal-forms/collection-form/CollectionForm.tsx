@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+
 import { zodResolver } from '@hookform/resolvers/zod'
+
 import { CollectionSchema, type Collection } from '~/schemas/collection'
+
 import Button from '~/components/button/Button'
 import FormInput from '~/components/form-input/FormInput'
 import TagsInput from '~/components/tags-input/TagsInput'

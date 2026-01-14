@@ -1,6 +1,7 @@
+import { URLs } from '~/constants/request'
 import type { UserLogin, UserSignup } from '~/schemas/auth'
 import type { AccessTokenResponse, LoginResponse } from '~/types/auth.types'
-import { URLs } from '~/constants/request'
+
 import { baseService } from './base-service'
 
 export const authService = {

@@ -1,6 +1,8 @@
 import React from 'react'
-import CheckIcon from '~/assets/icons/check.svg?react'
+
 import type { TailwindStyles } from '~/types/common.types'
+
+import CheckIcon from '~/assets/icons/check.svg?react'
 
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string

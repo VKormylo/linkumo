@@ -1,11 +1,17 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+
 import { useMutation } from '@tanstack/react-query'
+
+import { authService } from '~/services/auth-service'
+
 import { useAuthContext } from '~/context/authContext'
 import { useGoogleAuth } from '~/hooks/useGoogleAuth'
-import { authService } from '~/services/auth-service'
+
 import { AuthActionEnum } from '~/types/auth.types'
+
 import Button from '~/components/button/Button'
+
 import AuthBackground from '~/assets/images/auth-bg.png'
 import LogoIcon from '~/assets/logo.svg?react'
 

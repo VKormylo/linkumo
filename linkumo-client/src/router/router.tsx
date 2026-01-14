@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements
 } from 'react-router-dom'
-import App from '~/App'
+
 import Auth from '~/pages/auth/Auth'
 import AuthLogin from '~/pages/auth/auth-login/AuthLogin'
 import AuthSignup from '~/pages/auth/auth-signup/AuthSignup'
@@ -15,6 +15,9 @@ import MainContainer from '~/pages/main-container/MainContainer'
 import MyCollections from '~/pages/my-collections/MyCollections'
 import Settings from '~/pages/settings/Settings'
 import VerifyEmail from '~/pages/verify-email/VerifyEmail'
+
+import App from '~/App'
+
 import { authCheck } from './loaders/authCheck'
 
 export const routerConfig = (

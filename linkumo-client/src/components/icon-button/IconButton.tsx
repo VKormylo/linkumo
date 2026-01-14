@@ -1,4 +1,5 @@
 import type { Color, Size, TailwindStyles } from '~/types/common.types'
+
 import { styles } from './IconButton.styles'
 
 interface BaseProps {

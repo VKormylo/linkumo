@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
-import Dropdown from '../dropdown/Dropdown'
-import Tag from '../tag/Tag'
+
+import Dropdown from '~/components/dropdown/Dropdown'
+import Tag from '~/components/tag/Tag'
 
 interface TagsInputProps {
   tags: string[]

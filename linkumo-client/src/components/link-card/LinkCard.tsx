@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import Dropdown from '../dropdown/Dropdown'
-import IconButton from '../icon-button/IconButton'
-import Svg from '../svg/Svg'
-import DotsIcon from '~/assets/icons/dots.svg?react'
+
+import Button from '~/components/button/Button'
+import Dropdown from '~/components/dropdown/Dropdown'
+import ExternalLink from '~/components/external-link/ExternalLink'
+import IconButton from '~/components/icon-button/IconButton'
+import Svg from '~/components/svg/Svg'
+import Tag from '~/components/tag/Tag'
+
 import ArrowDownIcon from '~/assets/icons/arrow-down.svg?react'
+import DotsIcon from '~/assets/icons/dots.svg?react'
 import HeartIcon from '~/assets/icons/heart.svg?react'
-import Tag from '../tag/Tag'
-import Button from '../button/Button'
-import ExternalLink from '../external-link/ExternalLink'
 
 interface LinkCardProps {
   url: string
