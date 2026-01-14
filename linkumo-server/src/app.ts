@@ -12,6 +12,7 @@ import { ROOT } from '~/constants'
 import { handleError } from '~/middlewares/errorMiddleware'
 import authRouter from '~/routes/authRoutes'
 import linkRouter from '~/routes/linkRoutes'
+import tagRouter from '~/routes/tagRoutes'
 import userRouter from '~/routes/userRoutes'
 
 const app = express()
@@ -29,6 +30,7 @@ app.use(
 app.use(`${ROOT}/auth`, authRouter)
 app.use(`${ROOT}/users`, userRouter)
 app.use(`${ROOT}/links`, linkRouter)
+app.use(`${ROOT}/tags`, tagRouter)
 
 app.use(handleError)
 

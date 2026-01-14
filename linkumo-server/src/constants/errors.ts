@@ -1,5 +1,6 @@
 const errors = {
-  INVALID_TOKEN: 'Invalid token',
+  INVALID_TOKEN: 'Invalid token. Please log in again!',
+  TOKEN_EXPIRED: 'Your token has expired. Please log in again!',
   INVALID_EMAIL_OR_PASSWORD: 'Invalid email or password!',
   EMPTY_SIGNUP_CREDENTIALS: 'Please provide name, email and password!',
   EMPTY_LOGIN_CREDENTIALS: 'Please provide email and password!',
@@ -12,7 +13,10 @@ const errors = {
   GOOGLE_AUTH_FAILED: 'Google authentication failed!',
   GOOGLE_ID_TOKEN_REQUIRED: 'Google ID token is required!',
   LINK_ID_REQUIRED: 'Link ID is required!',
-  LINK_NOT_FOUND: 'Link not found!'
+  LINK_NOT_FOUND: 'Link not found!',
+  TAG_ID_REQUIRED: 'Tag ID is required!',
+  TAG_NOT_FOUND: 'Tag not found!',
+  TAG_NAME_REQUIRED: 'Tag name is required!'
 }
 
 export default errors

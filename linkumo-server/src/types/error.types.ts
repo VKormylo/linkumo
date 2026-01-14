@@ -35,3 +35,7 @@ export class ErrorResponse extends Error implements ErrorResponseInterface {
     Error.captureStackTrace(this, this.constructor)
   }
 }
+
+export enum PrismaErrorCode {
+  DUPLICATE_FIELD = 'P2002'
+}

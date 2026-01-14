@@ -4,10 +4,15 @@ import errors from '~/constants/errors'
 import { ErrorResponse, ErrorStatusCode } from '~/types/error.types'
 import { Link } from '~/types/link.types'
 
+import { findOrCreateTags } from './tagService'
+
 export const getAll = async (userId: string) => {
   const links = await prisma.link.findMany({
     where: {
       userId
+    },
+    include: {
+      tags: true
     }
   })
 
@@ -19,6 +24,9 @@ export const getOne = async (userId: string, id: string) => {
     where: {
       id,
       userId
+    },
+    include: {
+      tags: true
     }
   })
 
@@ -30,10 +38,20 @@ export const getOne = async (userId: string, id: string) => {
 }
 
 export const create = async (userId: string, payload: Link) => {
+  const { tags: tagNames, ...linkData } = payload
+
+  const tags = await findOrCreateTags(userId, tagNames)
+
   const link = await prisma.link.create({
     data: {
-      ...payload,
-      userId
+      ...linkData,
+      userId,
+      tags: {
+        connect: tags.map((tag) => ({ id: tag.id }))
+      }
+    },
+    include: {
+      tags: true
     }
   })
 
@@ -52,12 +70,28 @@ export const update = async (userId: string, id: string, payload: Link) => {
     throw new ErrorResponse(errors.LINK_NOT_FOUND, ErrorStatusCode.NOT_FOUND)
   }
 
+  const { tags: tagNames, ...linkData } = payload
+
+  const updateData: Parameters<typeof prisma.link.update>[0]['data'] = {
+    ...linkData
+  }
+
+  if (tagNames !== undefined) {
+    const tags = await findOrCreateTags(userId, tagNames)
+    updateData.tags = {
+      set: tags.map((tag) => ({ id: tag.id }))
+    }
+  }
+
   const link = await prisma.link.update({
     where: {
       id,
       userId
     },
-    data: payload
+    data: updateData,
+    include: {
+      tags: true
+    }
   })
 
   return link

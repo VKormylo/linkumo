@@ -1,3 +1,5 @@
 import { Link as PrismaLink } from '@prisma/client'
 
-export type Link = Pick<PrismaLink, 'url' | 'title' | 'tags' | 'isFavorite'>
+export type Link = Pick<PrismaLink, 'url' | 'title' | 'isFavorite'> & {
+  tags?: string[]
+}
