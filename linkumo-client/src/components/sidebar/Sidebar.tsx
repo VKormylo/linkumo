@@ -16,9 +16,9 @@ const Sidebar = () => {
   return (
     <aside className="flex h-screen w-[346px] flex-col justify-between bg-primary-50 px-[38px] py-12">
       <div>
-        <a href="/">
+        <NavLink to="/">
           <LogoIcon className="hover:cursor-pointer" />
-        </a>
+        </NavLink>
         <nav className="mt-12 flex flex-col gap-4">
           <NavLink
             to="/home"
